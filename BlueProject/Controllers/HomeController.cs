@@ -40,9 +40,27 @@ namespace BlueProject.Controllers
             return View();
         }
         
-        // public IActionResult Test2()
-        // {
-        //     return Json();
-        // }
+        public IActionResult Test2()  
+        { 
+            var model = new TestModel();
+            model.X = 7;
+            model.Y = "Yera";
+            return Json(model);
+            // return (new {X =7, Y="Yera"}) 
+            // return File("filePath", "applicaiton/octet-stream/", "filename") 
+        }
+        
+        public IActionResult Test3(string x, string y)
+        {
+            ViewBag.x = x;
+            ViewBag.y = y;
+            List<TestModel> list = new List<TestModel>();
+            list.Add(new TestModel(){X=1, Y="A"});
+            list.Add(new TestModel(){X=2, Y="A"});
+            list.Add(new TestModel(){X=3, Y="C"});
+            list.Add(new TestModel(){X=7, Y="K"});
+            ViewBag.list = list;
+            return View(list);
+        }
     }
 }

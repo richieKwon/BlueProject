@@ -1,0 +1,31 @@
+@* @model dynamic *@
+
+
+
+@model List<TestModel>
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout"; 
+}
+
+<h2>title</h2>
+
+@* <div> *@
+@*     @foreach (var item in ViewBag.list) *@
+@*     { *@
+@*         <div> *@
+@*             @item.X *@
+@*             @item.Y *@
+@*         </div> *@
+@*     }  *@
+@* </div> 대문자 모델은 위 선언한 모델을 사용하는 것  *@
+
+<div>
+    @foreach (var item in Model)
+    {
+        <div>
+            @item.X
+            @item.Y
+        </div>
+    }
+</div>

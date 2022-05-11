@@ -11,3 +11,6 @@ text/html
 application/json  
 image/jpg
 application/octet-stream
+
+ViewData["x"]=X  (temporary storage with key/value)
+ViewBag.y = y
