@@ -1,0 +1,13 @@
+view - cshtml
+Partialview - cshtml
+Json
+File
+Content(text returns)
+Redirect
+
+
+MIME Type
+text/html  
+application/json  
+image/jpg
+application/octet-stream

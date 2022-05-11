@@ -33,5 +33,16 @@ namespace BlueProject.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public IActionResult Test(List<int> x, string y )
+        {
+            return View();
+        }
+        
+        // public IActionResult Test2()
+        // {
+        //     return Json();
+        // }
     }
 }
