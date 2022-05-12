@@ -10,7 +10,7 @@ MIME Type
 text/html  
 application/json  
 image/jpg
-application/octet-stream
+application/octet-stream(file only)
 
 ViewData["x"]=X  (temporary storage with key/value)
 ViewBag.y = y
