@@ -17,3 +17,6 @@ ViewBag.y = y
 
 
 Bootstrap4 - Jquery site:github.com bootstrap4 free template
+
+@RenderBody()    
+@await Component.InvokeAsync("LeftMenu")
