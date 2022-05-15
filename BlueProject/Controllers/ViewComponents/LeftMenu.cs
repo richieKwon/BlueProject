@@ -9,7 +9,7 @@ namespace BlueProject.Controllers.ViewComponents
         }
 
         public IViewComponentResult Invoke()
-        {
+        {  
             return View();
         }
 

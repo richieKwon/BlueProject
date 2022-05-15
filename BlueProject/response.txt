@@ -20,3 +20,6 @@ Bootstrap4 - Jquery site:github.com bootstrap4 free template
 
 @RenderBody()    
 @await Component.InvokeAsync("LeftMenu")
+
+Nuget package 
+Mysql.Data or MysqlConnector >> mysql connector
