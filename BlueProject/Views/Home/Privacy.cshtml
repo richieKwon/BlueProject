@@ -1,6 +1,9 @@
-﻿@{
-    var dt = ViewData["dt"] as System.Data.DataTable;
-}
+﻿@model List<TicketModel>
+
+@* @{ *@
+@*     // var dt = ViewData["dt"] as System.Data.DataTable; *@
+@*     var ticketList = ViewData["ticketList"] as List<TicketModel>; *@
+@* } *@
 <div class="table-responsive">
     <table id="zero_config" class="table table-striped table-bordered no-warp">
         <thead>
@@ -17,12 +20,12 @@
         </tr>
         </thead>
         <tbody>
-        @foreach (System.Data.DataRow row in dt.Rows)
+        @foreach (var item in Model)
         {
             <tr>
-                <td>@row["status"]</td>
-                <td>@row["title"]</td>
-                <td>@row["ticket_id"]</td>
+                <td>@item.Status</td>
+                <td>@item.Title</td>
+                <td>@item.Ticket_id</td>
             </tr>
         }
         </tbody>

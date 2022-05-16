@@ -47,37 +47,58 @@ namespace BlueProject.Controllers
                 }
             }
 
-            return Redirect("home/privacy");
+            return Redirect("/home/Privacy");
             // return Json( new {msg = "OK"});
         }
 
         public IActionResult Privacy()
         {
-            var dt = new DataTable(); // create an instance for a datatable
+            
+            string status = "In Progress";
 
-            using (var conn = new MySqlConnection("Server=127.0.0.1;Database=myweb;Uid=root;Pwd=dookie91Sql!;"))
-            {
-                conn.Open();
-                using (var cmd = new MySqlCommand())
-                {
-                    string status = "In Progress";
-                    cmd.Connection = conn;
-                    cmd.CommandText = @"
-                            select ticket_id,
-                            title,
-                            status
-                            from myweb.t_ticket A
-                        ";
-                    cmd.Parameters.AddWithValue("status", status);
+            return View(TicketModel.GetList(status));
+            // var dt = new DataTable(); // create an instance for a datatable
 
-                    var reader = cmd.ExecuteReader(); // return data reader
-                    // cmd.ExecuteNonQuery(); // return total number of 
-                    dt.Load(reader);
-                    ViewData["dt"] = dt;
-                }
-            }
+//             using (var conn = new MySqlConnection("Server=127.0.0.1;Database=myweb;Uid=root;Pwd=dookie91Sql!;"))
+//             {
+//                 conn.Open();
+//                 string status = "In Progress";
+//
+//                 string sql = @"
+//                 select ticket_id,
+//                 title,
+//                 status
+//                 from myweb.t_ticket A
+//                 where status = @status   
+// ";
 
-            return View();
+            // ViewData["ticketList"]=Dapper.SqlMapper.Query<TicketModel>(conn, sql, new { status = status }).ToList();
+
+
+            // using (var cmd = new MySqlCommand())
+            // {
+            //     string status = "In Progress";
+            //     cmd.Connection = conn;
+            //     cmd.CommandText = @"
+            //             select ticket_id,
+            //             title,
+            //             status
+            //             from myweb.t_ticket A
+            //         ";
+            //     cmd.Parameters.AddWithValue("status", status);
+            //
+            //     var reader = cmd.ExecuteReader(); // return data reader
+            //     // cmd.ExecuteNonQuery(); // return total number of 
+            //     dt.Load(reader);
+            //     ViewData["dt"] = dt;
+            // }
+            //     return View(Dapper.SqlMapper.Query<TicketModel>(conn, sql, new { status = status }).ToList());
+            // }
+
+            // var list = new List<TicketModel>();
+
+
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
