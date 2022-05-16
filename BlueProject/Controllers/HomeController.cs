@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BlueProject.Models;
+using MySqlConnector;
 
 namespace BlueProject.Controllers
 {
@@ -23,8 +25,58 @@ namespace BlueProject.Controllers
             return View();
         }
 
+        public IActionResult PrivacyChange(int ticket_id, string title)
+        {
+            using (var conn = new MySqlConnection("Server=127.0.0.1;Database=myweb;Uid=root;Pwd=dookie91Sql!;"))
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = @"  
+                            update t_ticket
+                            set title = @title
+                            where ticket_id = @ticket_id
+                        ";
+                    cmd.Parameters.AddWithValue("@ticket_id", ticket_id);
+                    cmd.Parameters.AddWithValue("@title", title);
+
+                    // var reader = cmd.ExecuteReader(); // return data reader
+                    cmd.ExecuteNonQuery(); // return total number of 
+                   
+                }
+            }
+
+            return Redirect("home/privacy");
+            // return Json( new {msg = "OK"});
+        }
+
         public IActionResult Privacy()
         {
+            var dt = new DataTable(); // create an instance for a datatable
+
+            using (var conn = new MySqlConnection("Server=127.0.0.1;Database=myweb;Uid=root;Pwd=dookie91Sql!;"))
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+                    string status = "In Progress";
+                    cmd.Connection = conn;
+                    cmd.CommandText = @"
+                            select ticket_id,
+                            title,
+                            status
+                            from myweb.t_ticket A
+                        ";
+                    cmd.Parameters.AddWithValue("status", status);
+
+                    var reader = cmd.ExecuteReader(); // return data reader
+                    // cmd.ExecuteNonQuery(); // return total number of 
+                    dt.Load(reader);
+                    ViewData["dt"] = dt;
+                }
+            }
+
             return View();
         }
 
@@ -35,13 +87,13 @@ namespace BlueProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult Test(List<int> x, string y )
+        public IActionResult Test(List<int> x, string y)
         {
             return View();
         }
-        
-        public IActionResult Test2()  
-        { 
+
+        public IActionResult Test2()
+        {
             var model = new TestModel();
             model.X = 7;
             model.Y = "Yera";
@@ -49,16 +101,16 @@ namespace BlueProject.Controllers
             // return (new {X =7, Y="Yera"}) 
             // return File("filePath", "applicaiton/octet-stream/", "filename") 
         }
-        
+
         public IActionResult Test3(string x, string y)
         {
             ViewBag.x = x;
             ViewBag.y = y;
             List<TestModel> list = new List<TestModel>();
-            list.Add(new TestModel(){X=1, Y="A"});
-            list.Add(new TestModel(){X=2, Y="A"});
-            list.Add(new TestModel(){X=3, Y="C"});
-            list.Add(new TestModel(){X=7, Y="K"});
+            list.Add(new TestModel() { X = 1, Y = "A" });
+            list.Add(new TestModel() { X = 2, Y = "A" });
+            list.Add(new TestModel() { X = 3, Y = "C" });
+            list.Add(new TestModel() { X = 7, Y = "K" });
             ViewBag.list = list;
             return View(list);
         }
