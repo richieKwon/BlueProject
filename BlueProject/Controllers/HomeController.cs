@@ -25,27 +25,35 @@ namespace BlueProject.Controllers
             return View();
         }
 
-        public IActionResult PrivacyChange(int ticket_id, string title)
+        public IActionResult PrivacyChange(int ticket_id, string title) 
         {
-            using (var conn = new MySqlConnection("Server=127.0.0.1;Database=myweb;Uid=root;Pwd=dookie91Sql!;"))
-            {
-                conn.Open();
-                using (var cmd = new MySqlCommand())
-                {
-                    cmd.Connection = conn;
-                    cmd.CommandText = @"  
-                            update t_ticket
-                            set title = @title
-                            where ticket_id = @ticket_id
-                        ";
-                    cmd.Parameters.AddWithValue("@ticket_id", ticket_id);
-                    cmd.Parameters.AddWithValue("@title", title);
-
-                    // var reader = cmd.ExecuteReader(); // return data reader
-                    cmd.ExecuteNonQuery(); // return total number of 
-                   
-                }
-            }
+            var model = new TicketModel();
+            model.Ticket_id = ticket_id;
+            model.Title = title;
+            model.Update();
+            
+            //or.....  public IActionResult PrivacyChange([FromForm] TicketModel model){ model.Update()}
+            
+            
+            // using (var conn = new MySqlConnection("Server=127.0.0.1;Database=myweb;Uid=root;Pwd=dookie91Sql!;"))
+            // {
+            //     conn.Open();
+            //     using (var cmd = new MySqlCommand())
+            //     {
+            //         cmd.Connection = conn;
+            //         cmd.CommandText = @"  
+            //                 update  
+            //                 set title = @title
+            //                 where ticket_id = @ticket_id
+            //             ";
+            //         cmd.Parameters.AddWithValue("@ticket_id", ticket_id);
+            //         cmd.Parameters.AddWithValue("@title", title);
+            //
+            //         // var reader = cmd.ExecuteReader(); // return data reader
+            //         cmd.ExecuteNonQuery(); // return total number of 
+            //        
+            //     }
+            // }
 
             return Redirect("/home/Privacy");
             // return Json( new {msg = "OK"});

@@ -27,5 +27,17 @@ namespace BlueProject.Models
                 //
             }
         }
+
+        public int Update()
+        {
+            string sql = @"update  
+            set title = @title
+            where ticket_id = @ticket_id";
+            using (var conn = new MySqlConnection("Server=127.0.0.1;Database=myweb;Uid=root;Pwd=dookie91Sql!;"))
+            {
+                conn.Open();
+                return Dapper.SqlMapper.Execute(conn, sql, this);
+            }
+        }
     }
 }
