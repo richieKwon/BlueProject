@@ -15,7 +15,7 @@ namespace BlueProject.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/Login/Login");
         }
         
         public IActionResult Login()
