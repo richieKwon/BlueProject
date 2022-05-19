@@ -1,6 +1,14 @@
-@model dynamic
+@using Microsoft.VisualBasic
+@{
+    string msg = ViewData["msg"] as string;
+}
 
-<form id="form1" method="post" action="/Login/Login"   class="mt-4">
+@if (string.IsNullOrWhiteSpace(msg))
+{
+    <div class="alert alert-danger">@msg</div>
+}
+
+<form id="form1" method="post" action="/Login/register" class="mt-4">
     <div class="row">
         <div class="col-lg-12">
             <div class=" form-group">
