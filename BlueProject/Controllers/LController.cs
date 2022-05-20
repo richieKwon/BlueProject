@@ -32,7 +32,7 @@ namespace BlueProject.Controllers
             return Json(new {});
         }
         
-        public IActionResult Register(string msg)
+        public IActionResult Register(string msg)     
         {
             ViewData["msg"] = msg;
             return View();

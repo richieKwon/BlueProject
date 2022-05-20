@@ -3,7 +3,7 @@
     string msg = ViewData["msg"] as string;
 }
 
-@if (string.IsNullOrWhiteSpace(msg))
+@if (string.IsNullOrWhiteSpace(msg)==false)
 {
     <div class="alert alert-danger">@msg</div>
 }
@@ -23,6 +23,6 @@
         </div>
         <div class="col-lg-12 text-center">
             <button type="submit">Submit!</button>
-        </div>
+        </div>  
     </div>
 </form>
