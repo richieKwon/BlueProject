@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using MySqlConnector;
 
@@ -14,9 +15,9 @@ namespace BlueProject.Models
         {
             var sha = new System.Security.Cryptography.HMACSHA512();
             sha.Key = System.Text.Encoding.UTF8.GetBytes(this.Password.Length.ToString());
-            var hash=sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(this.Password));
-            
-            return this.Password= System.Convert.ToBase64String(hash);
+            var hash = sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(this.Password));
+
+            return this.Password = System.Convert.ToBase64String(hash);
         }
 
         internal int Register()
@@ -33,6 +34,35 @@ namespace BlueProject.Models
                 conn.Open();
                 return Dapper.SqlMapper.Execute(conn, sql, this);
             }
+        }
+
+        internal UserModel GetLoginUser()
+        {
+            string sql = @"
+                            SELECT 
+                            user_name,   
+                            email,
+                            password
+                            FROM myweb.t_user
+                            WHERE user_name = @user_name
+                                                        ";
+            UserModel user;
+            using (var conn = new MySqlConnection("Server=127.0.0.1;Database=myweb;Uid=root;Pwd=dookie91Sql!;"))
+            {
+                conn.Open();
+                user = Dapper.SqlMapper.QuerySingleOrDefault(conn, sql, this);
+            }
+
+            if (user == null)
+            {
+                throw new Exception("User does not exist");
+            }
+
+            if (user.Password != this.Password)
+            {
+                throw new Exception("Password is wrong");
+            }
+            return user;
         }
     }
 }

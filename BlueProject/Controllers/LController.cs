@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BlueProject.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using MySqlConnector;
 
 namespace BlueProject.Controllers
@@ -20,16 +23,39 @@ namespace BlueProject.Controllers
         }
         
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string msg)
         {
+            ViewData["msg"] = msg;
             return View();
-        }
+        } 
         
         [HttpPost]
         [Route("login/login")]
-        public IActionResult LoginProc([FromForm] UserModel input)
+        public async Task<IActionResult> LoginProc([FromForm] UserModel input)
         {
-            return Json(new {});
+            try
+            {
+                var user = input.GetLoginUser();
+
+                var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name,
+                    ClaimTypes.Role);
+                identity.AddClaim(new Claim(ClaimTypes.Name, user.User_name.ToString()));
+                identity.AddClaim(new Claim(ClaimTypes.Email, user.Email.ToString()));
+
+                var principal = new ClaimsPrincipal(identity);
+
+                await  HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
+                    new AuthenticationProperties
+                    {
+                        IsPersistent = false, ExpiresUtc = DateTime.UtcNow.AddHours(4), AllowRefresh = true
+                    });
+
+                return Redirect("/");
+            }
+            catch (Exception e)
+            {
+                return Redirect($"/login/loing?msg={HttpUtility.UrlEncode(e.Message)}");
+            }
         }
         
         public IActionResult Register(string msg)     
