@@ -44,6 +44,7 @@ namespace BlueProject.Controllers
         {
             try
             {
+                input.ConvertPassword();
                 input.Register();
                 return Redirect("/Login/Login");
             }
