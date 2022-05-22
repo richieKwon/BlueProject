@@ -50,7 +50,7 @@ namespace BlueProject.Models
             using (var conn = new MySqlConnection("Server=127.0.0.1;Database=myweb;Uid=root;Pwd=dookie91Sql!;"))
             {
                 conn.Open();
-                user = Dapper.SqlMapper.QuerySingleOrDefault(conn, sql, this);
+                user = Dapper.SqlMapper.QuerySingleOrDefault<UserModel>(conn, sql, this);
             }
 
             if (user == null)
