@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using BlueProject.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using MySqlConnector;
 
 namespace BlueProject.Controllers
@@ -79,6 +80,13 @@ namespace BlueProject.Controllers
                 return Redirect($"Login/Register?msg={HttpUtility.UrlEncode(e.Message)}");
             }
             
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return Redirect("/");
         }
     }
 }    
