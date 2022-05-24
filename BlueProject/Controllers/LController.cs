@@ -42,6 +42,12 @@ namespace BlueProject.Controllers
                     ClaimTypes.Role);
                 identity.AddClaim(new Claim(ClaimTypes.Name, user.User_name.ToString()));
                 identity.AddClaim(new Claim(ClaimTypes.Email, user.Email.ToString()));
+                identity.AddClaim(new Claim("LastCheckDateTime", DateTime.UtcNow.ToString("yyyyMMddHHmmss")));
+
+                if (user.User_name == "Yera")
+                {
+                    identity.AddClaim(new Claim(ClaimTypes.Role,"ADMIN"));
+                }
 
                 var principal = new ClaimsPrincipal(identity);
 
