@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "LlU9W+O5BEylUAtKXCsnZPofDpTLKsZQVbAUYX2gsitpGS5AISqISnhPCDut7b+TI0BIsc8EAOjsLZmP6VtC2g==",
+  "success": true,
+  "projectFilePath": "/Users/richie/RiderProjects/BlueProject/BlueProject.Lib/BlueProject.Lib.csproj",
+  "expectedPackageFiles": [
+    "/Users/richie/.nuget/packages/dapper/2.0.123/dapper.2.0.123.nupkg.sha512",
+    "/Users/richie/.nuget/packages/mysqlconnector/2.1.9/mysqlconnector.2.1.9.nupkg.sha512"
+  ],
+  "logs": []
+}
