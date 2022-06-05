@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using MySqlConnector;
 
 namespace BlueProject.Lib.Database
@@ -12,12 +13,10 @@ namespace BlueProject.Lib.Database
         }
 
         public List<T> GetQuery<T>(string sql, object praram)
-        { 
-        }
-        using (var conn = new MySqlConnection("Server=127.0.0.1;Database=myweb;Uid=root;Pwd=dookie91Sql!;"))
         {
-            
+            return Dapper.SqlMapper.Query<T>(_conn, sql, param).ToList();
         }
+        
 
             
             
