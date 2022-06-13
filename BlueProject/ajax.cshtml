@@ -1,6 +1,16 @@
 <div>
     <div>
         <input id="ticket_id" type="text" />
-        <button type="button class="btn btn-sm btn-primary></button>
+        <button id ="btn1" type="button class="btn btn-sm btn-primary></button>
     </div>
-</div>
+    <script>
+    $("btn1").click(function (){
+        
+        var xhr = new XMLHttpRequest();
+        xhr.setRequestHeader("Content-Type", "application/x-ww-form-urlencoded")
+        xhr.open("post", "/Home/PrivacyChange/", true)
+    });
+    
+    
+    </script>
+</div> 
