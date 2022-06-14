@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueProject", "BlueProject\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueProject.Lib", "BlueProject.Lib\BlueProject.Lib.csproj", "{74EE66E4-1105-4D1F-8EC3-1DA814661220}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api", "api\api.csproj", "{99D878AF-73CF-4935-B0BC-678B0DE8564F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{1F7DF220-0861-4B74-BE69-A39AEA6E6D05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{74EE66E4-1105-4D1F-8EC3-1DA814661220}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74EE66E4-1105-4D1F-8EC3-1DA814661220}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74EE66E4-1105-4D1F-8EC3-1DA814661220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99D878AF-73CF-4935-B0BC-678B0DE8564F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99D878AF-73CF-4935-B0BC-678B0DE8564F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99D878AF-73CF-4935-B0BC-678B0DE8564F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99D878AF-73CF-4935-B0BC-678B0DE8564F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F7DF220-0861-4B74-BE69-A39AEA6E6D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F7DF220-0861-4B74-BE69-A39AEA6E6D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F7DF220-0861-4B74-BE69-A39AEA6E6D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F7DF220-0861-4B74-BE69-A39AEA6E6D05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
